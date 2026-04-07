@@ -50,6 +50,7 @@ obelisk scan --target https://example.com --severity HIGH
 # Check a specific package version
 obelisk scan --package requests==2.27.1
 ```
+![Obelisk Scanner Initialization](https://i.imgur.com/4QzQ8OK.png)
 
 ---
 
