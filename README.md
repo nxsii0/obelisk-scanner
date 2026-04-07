@@ -50,7 +50,6 @@ obelisk scan --target https://example.com --severity HIGH
 # Check a specific package version
 obelisk scan --package requests==2.27.1
 ```
-![OBELISK SCANNER Terminal Interface](https://i.imgur.com/lvSIyMS.png)
 
 ---
 
@@ -58,15 +57,7 @@ obelisk scan --package requests==2.27.1
 
 ### Global Parameters
 
-| Flag | Purpose | Default |
-|------|---------|---------|
-| `-f, --file` | Path to a requirements.txt file | - |
-| `-d, --dir` | Recursive scan of a project directory | - |
-| `--package` | Audit a specific PyPI package | - |
-| `--target` | Scan a live URL or IP address | - |
-| `--severity` | Minimum intensity (CRITICAL, HIGH, MEDIUM, LOW) | HIGH |
-| `--format` | Export format (html, pdf, json, csv, all) | all |
-
+![OBELISK SCANNER Terminal Interface](https://i.imgur.com/lvSIyMS.png)
 ---
 
 ## Advanced Workflows
