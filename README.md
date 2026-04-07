@@ -34,6 +34,9 @@ For the best experience, simply type `obelisk` to enter the interactive guided m
 ```bash
 obelisk
 ```
+<p align="center">
+  <img src="https://i.imgur.com/wMXeGuC.png" alt="OBELISK SCANNER Logo" width="800">
+</p>
 
 ### 3. Advanced CLI Power
 Bypass the menu for automation or quick scans:
