@@ -31,6 +31,7 @@ ENV/
 # Project Specific
 results/
 output/
+debug-*.log
 debug_pdf.py
 test_output.pdf
 rename_script.py
