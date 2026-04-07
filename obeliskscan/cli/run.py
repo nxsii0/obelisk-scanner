@@ -260,11 +260,76 @@ def run_scan(args) -> int:
     return 0
 
 
+def run_interactive_menu(pr: Printer) -> int:
+    """Launches the Monolith interactive mode."""
+    from rich.prompt import IntPrompt, Prompt
+    from rich.panel import Panel
+
+    print_banner(no_color=False)
+    pr.print(Panel("[bold purple]MONOLITH INTERACTIVE INTERFACE[/bold purple]", expand=False))
+    
+    pr.print("\n[bold cyan]MODES[/bold cyan]")
+    pr.print("  [1] [bold]Scan Requirements File[/bold] (Industrial Audit)")
+    pr.print("  [2] [bold]Scan Project Directory[/bold] (Deep Recursive Scan)")
+    pr.print("  [3] [bold]Scan Single Package[/bold] (Check specific version)")
+    pr.print("  [4] [bold]Scan Live Target[/bold] (URL/IP Protocol Fingerprinting)")
+    pr.print("  [5] [bold dim]Exit[/bold dim]")
+    
+    try:
+        choice = IntPrompt.ask("\n[bold yellow]SYSTEM SELECT[/bold yellow]", choices=["1", "2", "3", "4", "5"], default=5, console=pr.console())
+    except (EOFError, KeyboardInterrupt):
+        return 0
+
+    if choice == 5:
+        return 0
+        
+    # Build dynamic args object
+    class InteractiveArgs:
+        def __init__(self):
+            self.file = None
+            self.dir = None
+            self.package = None
+            self.target = None
+            self.target_ports = "21,22,23,25,53,80,110,111,135,139,143,443,445,993,995,1723,3306,3389,5432,5900,6379,8000,8080,8443"
+            self.severity = "HIGH"
+            self.ignore = ""
+            self.cve = None
+            self.limit = None
+            self.format = None
+            self.output_dir = "results"
+            self.timeout = 10
+            self.insecure = False
+            self.no_color = False
+            self.verbose = False
+            self.ci = False
+            self.no_export = False
+
+    args = InteractiveArgs()
+    
+    if choice == 1:
+        args.file = Prompt.ask("Path to requirements file", default="requirements.txt", console=pr.console())
+    elif choice == 2:
+        args.dir = Prompt.ask("Path to project root", default=".", console=pr.console())
+    elif choice == 3:
+        args.package = Prompt.ask("Package name (e.g. requests==2.27.1)", console=pr.console())
+    elif choice == 4:
+        args.target = Prompt.ask("Target URL or IP", console=pr.console())
+        
+    # Ask for severity
+    args.severity = Prompt.ask("Minimum intensity", choices=["CRITICAL", "HIGH", "MEDIUM", "LOW", "ALL"], default="HIGH", console=pr.console())
+        
+    return run_scan(args)
+
+
 def main() -> None:
     parser = build_parser()
     args = parser.parse_args()
     if args.command == "scan":
         raise SystemExit(run_scan(args))
+    else:
+        # Launch interactive menu if no command
+        pr = Printer(no_color=False)
+        raise SystemExit(run_interactive_menu(pr))
     parser.print_help()
     raise SystemExit(1)
 
