@@ -31,7 +31,7 @@ OBELISK SCANNER is easy to install and deploy:
 ```bash
 git clone https://github.com/nxsii0/obeliskscanner
 cd obeliskscanner
-pip install .
+py setup.py
 ```
 
 **Requirements:** Python 3.8+
@@ -76,7 +76,7 @@ Fingerprint live targets and identify CVEs through HTTP/port scanning.
 ### Command-Line Options
 
 ```
-usage: obeliskscan scan [-h]
+usage: py main.py scan [-h]
                         [-f FILE | -d DIR | --package PKG | --target URL/IP]
                         [--target-ports PORTS]
                         [--severity {CRITICAL,HIGH,MEDIUM,LOW,ALL}]
