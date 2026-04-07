@@ -36,8 +36,8 @@ A terminal-first experience optimized for clarity and speed. Obelisk uses high-c
 
 ### Standard Setup
 ```bash
-git clone https://github.com/nxsii0/obeliskscanner
-cd obeliskscanner
+git clone https://github.com/nxsii0/obelisk-scanner
+cd obelisk-scanner
 python setup.py
 ```
 
@@ -45,11 +45,8 @@ python setup.py
 
 ### Optional Enhancements
 ```bash
-# PDF reporting support
-pip install weasyprint
-
-# Shodan integration
-pip install shodan
+# Faster TOML parsing for pyproject.toml
+pip install toml
 ```
 
 ---

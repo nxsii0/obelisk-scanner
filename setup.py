@@ -3,7 +3,8 @@ import subprocess
 from setuptools import setup, find_packages
 
 # Ensure UTF-8 for Windows console
-if sys.stdout.encoding.lower() != 'utf-8':
+_enc = (getattr(sys.stdout, "encoding", None) or "").lower()
+if sys.platform.startswith("win") and _enc != "utf-8":
     import io
     sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
@@ -75,6 +76,7 @@ setup(
         "requests>=2.27.0",
         "rich>=12.0.0",
         "fpdf2>=2.7.0",
+        "toml>=0.10.2",
     ],
     entry_points={
         "console_scripts": [
