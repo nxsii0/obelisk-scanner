@@ -38,6 +38,7 @@ A terminal-first experience optimized for clarity and speed. Obelisk uses high-c
 ```bash
 git clone https://github.com/nxsii0/obelisk-scanner
 cd obelisk-scanner
+pip install -r requirements.txt
 python setup.py
 ```
 
