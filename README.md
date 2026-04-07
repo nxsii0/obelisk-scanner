@@ -1,174 +1,100 @@
-# OBELISK SCANNER
-**Fast hybrid vulnerability scanner (early Release)**
+# ◢ OBELISK ◣
+**Modern. Brutalist. Industrial-Grade Vulnerability Intelligence.**
 
-![OBELISK SCANNER Logo](https://files.manuscdn.com/user_upload_by_module/session_file/310519663454022070/AEWtLBwPNsFjEDNV.png)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Security: OSV+NVD](https://img.shields.io/badge/Security-OSV%20%2B%20NVD-red.svg)](https://nvd.nist.gov/)
 
----
-
-## Overview
-Obelisk Scanner is a high-performance security tool built for rapid vulnerability mapping and deep dependency auditing. Designed with a focus on speed and clarity, it delivers high-contrast terminal output and professional reports to help you identify and remediate security risks instantly.
+**Obelisk** is a high-performance security tool engineered for rapid vulnerability mapping and deep dependency auditing. Designed with a focus on speed, tactical clarity, and developer experience, it delivers high-contrast terminal output and multi-format professional reports to identify security risks instantly.
 
 ---
 
 ## Core Capabilities
 
-### Comprehensive Dependency Auditing
-Scan `requirements.txt` files, local project directories, or specific PyPI packages. Obelisk cross-references multiple intelligence sources—including **NVD**, **OSV**, and **Shodan**—to ensure no vulnerability goes unnoticed.
-
-### Real-Time Live Fingerprinting
-Identify technologies and active CVEs on live targets via URLs or IP addresses. The scanner uses protocol-aware fingerprinting for HTTP and common ports to provide immediate threat detection.
-
-### Professional Report Generation
-Export findings into structured, actionable documents. Supported formats:
-- PDF
-- HTML
-- JSON
-- CSV  
-
-Perfect for sharing results or integrating into compliance workflows.
-
-### Brutalist Command-Line Interface
-A terminal-first experience optimized for clarity and speed. Obelisk uses high-contrast, severity-based color coding to ensure critical threats stand out instantly.
-
----
-
-## Installation
-
-### Standard Setup
-```bash
-git clone https://github.com/nxsii0/obelisk-scanner
-cd obelisk-scanner
-pip install -r requirements.txt
-python setup.py
-```
-
-**Requirement:** Python 3.8+
-
-### Optional Enhancements
-```bash
-# Faster TOML parsing for pyproject.toml
-pip install toml
-```
+- **Deep Dependency Auditing**: Cross-references `requirements.txt`, local project directories, or PyPI packages against global intelligence (NVD, OSV, and Shodan).
+- **Tactical Live Fingerprinting**: Directly probe URLs or IP addresses for active CVEs via protocol-aware fingerprinting (HTTP, common ports).
+- **Brutalist Terminal UI**: Optimized for clarity. Severity-based color coding ensures critical threats stand out in industrial-style output.
+- **Enterprise Reporting**: Export findings into actionable **PDF**, **HTML**, **JSON**, or **CSV** documents.
 
 ---
 
 ## Quick Start
 
-### Audit a Python project's dependencies
+### 1. Installation
 ```bash
-obeliskscan scan -f requirements.txt
+git clone https://github.com/nxsii0/obelisk-scanner
+cd obelisk-scanner
+pip install -e .
 ```
 
-### Recursively scan a local directory
+### 2. Enter the Interface
+For the best experience, simply type `obelisk` to enter the interactive guided menu:
 ```bash
-obeliskscan scan -d ./myproject
+obelisk
 ```
 
-### Check a specific package version
+### 3. Advanced CLI Power
+Bypass the menu for automation or quick scans:
 ```bash
-obeliskscan scan --package requests==2.27.0
-```
+# Scan a project file
+obelisk scan -f requirements.txt
 
-### Fingerprint a live target
-```bash
-obeliskscan scan --target https://example.com --target-ports 80,443,22
+# Probe a live target
+obelisk scan --target https://example.com --severity HIGH
+
+# Check a specific package version
+obelisk scan --package requests==2.27.1
 ```
 
 ---
 
 ## Command Reference
 
-### Global Scan Options
+### Global Parameters
 
-| Option | Description |
-|------|-------------|
-| `-f, --file` | Path to a requirements.txt file |
-| `-d, --dir` | Path to a project directory for recursive scanning |
-| `--package` | Audit a specific package (e.g., `flask==2.0.1`) |
-| `--target` | Scan a live URL or IP address |
-| `--target-ports` | Ports for live target scanning (comma-separated) |
-
----
-
-### Filtering & Output
-
-| Option | Description |
-|------|-------------|
-| `--severity` | Filter results (CRITICAL, HIGH, MEDIUM, LOW, ALL) |
-| `--format` | Export format (html, pdf, json, csv) |
-| `--output-dir` | Directory for reports |
-| `--ignore` | Ignore specific CVE IDs |
-| `--limit` | Limit results to N vulnerabilities |
-
----
-
-### System & Automation
-
-| Option | Description |
-|------|-------------|
-| `--ci` | Enable CI/CD mode |
-| `--timeout` | Set scan timeout |
-| `--verbose` | Enable detailed logging |
-| `--no-color` | Disable colored output |
-| `--no-export` | Skip report generation |
+| Flag | Purpose | Default |
+|------|---------|---------|
+| `-f, --file` | Path to a requirements.txt file | - |
+| `-d, --dir` | Recursive scan of a project directory | - |
+| `--package` | Audit a specific PyPI package | - |
+| `--target` | Scan a live URL or IP address | - |
+| `--severity` | Minimum intensity (CRITICAL, HIGH, MEDIUM, LOW) | HIGH |
+| `--format` | Export format (html, pdf, json, csv, all) | all |
 
 ---
 
 ## Advanced Workflows
 
 ### CI/CD Integration
-Automate security checks in your pipeline:
-
+Block builds if critical vulnerabilities are found:
 ```bash
-obeliskscan scan -f requirements.txt --ci --severity CRITICAL
+obelisk scan -f requirements.txt --ci --severity CRITICAL
 ```
 
-This will fail builds if critical vulnerabilities are detected.
-
----
-
-### Multi-Format Reporting
-Generate multiple report formats in one run:
-
+### Strategic Reporting
+Batch export reports for compliance:
 ```bash
-obeliskscan scan -f requirements.txt --format html,pdf,json --output-dir ./security_audits
+obelisk scan -d ./src --format html,pdf --output-dir ./security_audits
 ```
 
 ---
 
-## Supported Data Sources
+## Intelligence Sources
 
-Obelisk Scanner integrates with:
-
-- **NVD (National Vulnerability Database)** — Comprehensive CVE data  
-- **OSV (Open Source Vulnerabilities)** — Project-specific risks  
-- **Shodan** — Internet-wide device and service intelligence  
-- **PyPI** — Package metadata and version tracking  
-
----
-
-## Security Best Practices
-
-1. **Shift Left** — Scan early in development  
-2. **Prioritize** — Focus on **CRITICAL** and **HIGH** issues first  
-3. **Automate** — Use `--ci` to block vulnerable builds  
-4. **Update** — Keep dependencies current  
+Obelisk integrates with leading vulnerability databases:
+- **NVD** (National Vulnerability Database)
+- **OSV** (Open Source Vulnerabilities)
+- **Shodan** (Internet-wide intelligence)
+- **PyPI** (Package metadata tracking)
 
 ---
 
-## License
+## License & Disclaimer
 
-Distributed under the **MIT License**.
+**License**: Distributed under the MIT License. See `LICENSE` for more information.
 
----
-
-## Disclaimer
-
-Obelisk Scanner is intended for professional security auditing and authorized testing only.
-
-Unauthorized scanning of third-party infrastructure is illegal.  
-Users are responsible for ensuring they have proper permission before initiating scans.
+**Disclaimer**: Obelisk is intended for authorized security testing only. Unauthorized scanning of third-party infrastructure is illegal and unethical. The authors assume no liability for misuse.
 
 ---
-
-© 2026 OBELISK SCANNER — Industrial-Grade Vulnerability Intelligence
+© 2026 OBELISK — PREPARE FOR DEPLOYMENT.
+ade Vulnerability Intelligence

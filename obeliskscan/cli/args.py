@@ -9,24 +9,24 @@ HELP_EPILOG = """
 ----------------------------------------------------
 
   Scan a requirements.txt:
-    python -m obeliskscan scan -f requirements.txt
+    obelisk scan -f requirements.txt
 
   Scan a project directory:
-    python -m obeliskscan scan -d ./myproject
+    obelisk scan -d ./myproject
 
   Scan a specific package inline:
-    python -m obeliskscan scan --package requests==2.27.0
+    obelisk scan --package requests==2.27.0
 
   Scan a live target (URL/IP) for CVEs via HTTP/port fingerprinting:
-    python -m obeliskscan scan --target scanme.nmap.org
-    python -m obeliskscan scan --target https://example.com --target-ports 80,443,22
+    obelisk scan --target scanme.nmap.org
+    obelisk scan --target https://example.com --target-ports 80,443,22
 ----------------------------------------------------
 """
 
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="obeliskscan",
+        prog="obelisk",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=HELP_EPILOG,
     )

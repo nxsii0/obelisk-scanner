@@ -261,17 +261,22 @@ def run_scan(args) -> int:
 
 
 def run_interactive_menu(pr: Printer) -> int:
-    """Launches the Monolith interactive mode."""
+    """
+    Launches the Obelisk interactive menu.
+    
+    This provides a guided experience for users who prefer a menu-driven 
+    interface over direct CLI commands.
+    """
     from rich.prompt import IntPrompt, Prompt
     from rich.panel import Panel
 
     print_banner(no_color=False)
-    pr.print(Panel("[bold purple]MONOLITH INTERACTIVE INTERFACE[/bold purple]", expand=False))
+    pr.print(Panel("[bold purple]OBELISK INTERACTIVE INTERFACE[/bold purple]", expand=False))
     
-    pr.print("\n[bold cyan]MODES[/bold cyan]")
-    pr.print("  [1] [bold]Scan Requirements File[/bold] (Industrial Audit)")
+    pr.print("\n[bold cyan]AVAILABLE MODES[/bold cyan]")
+    pr.print("  [1] [bold]Scan Requirements File[/bold] (Standard Audit)")
     pr.print("  [2] [bold]Scan Project Directory[/bold] (Deep Recursive Scan)")
-    pr.print("  [3] [bold]Scan Single Package[/bold] (Check specific version)")
+    pr.print("  [3] [bold]Scan Single Package[/bold] (Specific PyPI Check)")
     pr.print("  [4] [bold]Scan Live Target[/bold] (URL/IP Protocol Fingerprinting)")
     pr.print("  [5] [bold dim]Exit[/bold dim]")
     
@@ -316,18 +321,24 @@ def run_interactive_menu(pr: Printer) -> int:
         args.target = Prompt.ask("Target URL or IP", console=pr.console())
         
     # Ask for severity
-    args.severity = Prompt.ask("Minimum intensity", choices=["CRITICAL", "HIGH", "MEDIUM", "LOW", "ALL"], default="HIGH", console=pr.console())
+    args.severity = Prompt.ask("Minimum Severity Threshold", choices=["CRITICAL", "HIGH", "MEDIUM", "LOW", "ALL"], default="HIGH", console=pr.console())
         
     return run_scan(args)
 
 
 def main() -> None:
+    """
+    Main entry point for the Obelisk CLI.
+    
+    Parses arguments and either executes a direct scan command or 
+    launches the interactive menu if no command is provided.
+    """
     parser = build_parser()
     args = parser.parse_args()
     if args.command == "scan":
         raise SystemExit(run_scan(args))
     else:
-        # Launch interactive menu if no command
+        # Launch interactive menu if no command provided
         pr = Printer(no_color=False)
         raise SystemExit(run_interactive_menu(pr))
     parser.print_help()

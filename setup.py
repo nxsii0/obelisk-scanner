@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
 # Standard Setuptools Metadata
 setup(
-    name="obeliskscan",
+    name="obelisk",
     version="1.0.0",
     author="Obelisk Team",
     description="A Brutalist-style vulnerability scanner for dependencies and live targets.",
@@ -80,7 +80,7 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "obeliskscan=obeliskscan.cli.run:main",
+            "obelisk=obeliskscan.cli.run:main",
         ],
     },
     python_requires=">=3.8",
