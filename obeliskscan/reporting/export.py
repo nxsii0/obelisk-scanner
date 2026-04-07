@@ -656,8 +656,10 @@ def export_pdf(path: Path, packages: list[dict], results: list[tuple[dict, list[
             elif sev == "MEDIUM": pdf.set_text_color(150, 150, 0)
             else: pdf.set_text_color(0, 0, 0)
             
-            pdf.cell(cols[0], 8, pkg['name'][:22], border=1)
-            pdf.cell(cols[1], 8, pkg.get('version', '?')[:15], border=1)
+            p_name = str(pkg.get('name') or 'unknown')
+            p_ver = str(pkg.get('version') or '?')
+            pdf.cell(cols[0], 8, p_name[:22], border=1)
+            pdf.cell(cols[1], 8, p_ver[:15], border=1)
             pdf.cell(cols[2], 8, cve_id[:25], border=1)
             pdf.cell(cols[3], 8, sev, border=1)
             
