@@ -1,5 +1,5 @@
 # OBELISK SCANNER
-**Industrial-Grade Vulnerability Intelligence**
+**Fast hybrid vulnerability scanner (early Release)**
 
 ![OBELISK SCANNER Logo](https://files.manuscdn.com/user_upload_by_module/session_file/310519663454022070/AEWtLBwPNsFjEDNV.png)
 
