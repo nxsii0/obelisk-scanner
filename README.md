@@ -1,6 +1,7 @@
 # Obelisk Scan
 **Modern. Brutalist. Industrial-Grade Vulnerability Intelligence.**
-![Obelisk Scanner Logo] (https://i.imgur.com/2gxI28k.png)
+<div align="center">
+  <img src="https://i.imgur.com/2gxI28k.png" alt="Obelisk Scanner Logo" width="600">
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Security: OSV+NVD](https://img.shields.io/badge/Security-OSV%20%2B%20NVD-red.svg)](https://nvd.nist.gov/)
